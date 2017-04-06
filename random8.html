@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>随机1~8</title>
+</head>
+<body>
+    <div id="val"></div>
+    <input type="button" value="随机生成" onclick="run()"/>
+    <script>
+
+        function GetRandomNum(Min,Max)
+        {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            return(Min + Math.round(Rand * Range));
+        }
+
+        function checkTime()
+        {
+            var s="";
+
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            //val.innerText = val.innerText + h+":"+m+":"+s + '\n';
+
+            if ( (h>=19 && h<=20 && s==0) || (h>=7 && h<=8 && s==0) ) {
+                val.innerText = val.innerText + h+":"+m+":"+s + '-----';
+                run();
+            }
+
+            setTimeout("checkTime()", 1000)
+        }
+
+        function run(){
+            var val = document.getElementById("val");
+            var tmp = ""
+            for (var i=0;i<8;i++)
+            {
+                tmp = tmp + parseInt( GetRandomNum(1,8) )
+            }
+            val.innerText = val.innerText + tmp + '\n';
+            
+        }
+
+        setTimeout("checkTime()", 1000)
+    </script>
+</body>
+</html>
